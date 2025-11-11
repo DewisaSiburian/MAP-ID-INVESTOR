@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kode Etik MAP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #222;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            font-size: 13px; /* Default body font size */
+        }
+
+        /* Kontainer untuk membatasi lebar di desktop */
+        .page-container {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+        
+        /* --- Header Utama (Logo & Navigasi) --- */
+        .header-top {
+            padding: 10px 15px 0 15px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .logo-section img {
+            height: 45px;
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+        
+        .main-nav-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Info Bar (Harga Saham & Ikon) */
+        .top-info-bar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            font-size: 11px; /* Ukuran font di header atas */
+            font-weight: 400;
+            color: #666;
+            padding-bottom: 5px;
+            gap: 15px;
+        }
+
+        .stock-info {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 700;
+        }
+
+        .stock-info .mdi {
+            font-size: 14px;
+            color: #c30000;
+        }
+
+        .stock-info span:last-child {
+            color: #c30000;
+        }
+
+        .lang-search {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #444;
+            font-size: 15px; /* Ukuran ikon */
+            margin-left: 10px;
+        }
+        
+        .lang-search span:last-child {
+            font-size: 12px;
+            font-weight: 700;
+            color: #222;
+        }
+        
+        /* --- Navbar Merah (Main Menu) --- */
+        .navbar-custom {
+            background: #c30000;
+            font-weight: 600;
+            font-size: 11px; 
+            letter-spacing: 0.05em;
+            padding: 0;
+        }
+        
+        .navbar-right-links {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            font-size: 10px; /* Ukuran font link di kanan navbar */
+            font-weight: 600;
+            height: 100%;
+            background-color: #aa0000;
+            margin-left: auto;
+            padding: 0; /* Pastikan tidak ada padding default */
+        }
+
+        .navbar-right-links a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 10px; /* Padding yang lebih presisi */
+            text-transform: uppercase;
+            border-left: 1px solid #d33a3a;
+            line-height: 1;
+        }
+
+        .navbar-custom .nav-link {
+            color: #fff;
+            text-transform: uppercase;
+            padding: 12px 15px; /* Padding yang lebih presisi */
+            border-right: 1px solid #d33a3a; 
+            line-height: 1;
+        }
+        
+        .navbar-custom .nav-link:first-child {
+             border-left: 1px solid #d33a3a;
+        }
+
+        .navbar-custom .nav-link.active,
+        .navbar-custom .nav-link:hover {
+            background-color: #aa0000;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        /* --- Konten utama --- */
+        main.content-wrapper {
+            max-width: 720px;
+            margin: 40px auto;
+            padding: 0 15px;
+        }
+
+        main .subtitle {
+            font-weight: 700;
+            font-size: 12px; 
+            color: #a02626;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.15em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        main h1 {
+            font-weight: 700;
+            font-size: 30px; 
+            margin-bottom: 30px;
+            text-align: center;
+            color: #222;
+        }
+
+        main p {
+            font-size: 14px; /* Ukuran font paragraf konten */
+            padding-bottom: 15px;
+            margin: 0;
+            line-height: 1.6; 
+        }
+
+        main h2 {
+            font-weight: 700;
+            font-size: 17px; /* Ukuran font sub-judul konten */
+            margin: 30px 0 10px 0;
+            color: #222;
+        }
+
+        /* --- Garis merah pembatas footer --- */
+        .footer-divider {
+            border-top: 1px solid #c30000;
+            max-width: 1140px;
+            margin: 50px auto 20px auto; 
+        }
+
+        /* --- Footer container --- */
+        footer.footer-container {
+            max-width: 1140px;
+            margin: auto;
+            padding: 0 15px 40px 15px;
+            user-select: none;
+        }
+
+        /* === TAUTAN FOOTER (Pola 3-3-Logo) === */
+        .footer-links-layout {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 20px; 
+        }
+        
+        .footer-col-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px 40px; 
+            flex-grow: 1;
+            flex-basis: 75%; 
+        }
+
+        .footer-col {
+            flex-basis: calc(33.333% - 27px); 
+            min-width: 140px;
+        }
+
+        .footer-col h3 {
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 13px; /* Ukuran font judul kolom footer */
+            color: #222;
+            padding-bottom: 5px; 
+            border-bottom: 1px solid #ccc; /* Garis bawah pada heading */
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Untuk dot di kanan */
+            padding-right: 0; /* Hapus padding-right karena dot akan diatur dengan gap */
+        }
+        
+        /* Bulat merah kecil di judul footer - PINDAH KE KANAN MENGGUNAKAN ::AFTER */
+        .footer-col h3::after {
+            content: '';
+            display: inline-block;
+            width: 5px; /* Ukuran dot */
+            height: 5px; /* Ukuran dot */
+            background-color: #c30000;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-left: 5px; /* Jarak antara titik judul dan dot */
+        }
+        
+        /* Teks di dalam h3 agar bisa mengisi ruang */
+        .footer-col h3 span {
+            flex-grow: 1;
+            padding-right: 0; /* Pastikan tidak ada padding tambahan yang mendorong dot */
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 4px;
+        }
+
+        .footer-col ul li a {
+            color: #666; 
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 12px; /* Ukuran font link footer */
+        }
+        
+        /* Investor - dibagi menjadi dua sub-kolom */
+        .investor-wrapper {
+            display: flex;
+            gap: 30px; 
+        }
+
+        /* Logo MAP di Footer di PINGGIR KANAN */
+        .footer-logo {
+            flex-shrink: 0;
+            flex-basis: 180px;
+            align-self: flex-start;
+            padding-top: 0; 
+            margin-left: 20px; 
+        }
+        
+        .footer-logo img {
+            width: 150px; 
+            float: right; 
+        }
+
+        /* === MAPCLUB/BERITA (Baris Bawah Footer) === */
+        .mapclub-wrapper {
+            border-top: 1px solid #ccc; 
+            margin-top: 20px;
+            padding-top: 20px;
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end; 
+            flex-wrap: wrap;
+        }
+
+        .mapclub-left {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mapclub-left h4 {
+            font-size: 13px; /* Ukuran font "Lihat Berita Terbaru..." */
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .mapclub-left button {
+            background-color: #c30000;
+            color: white;
+            border: none;
+            padding: 5px 15px; 
+            font-weight: 700;
+            font-size: 11px; /* Ukuran font tombol */
+            text-transform: uppercase;
+            border-radius: 0;
+            align-self: flex-start;
+        }
+
+        .mapclub-social {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 5px;
+        }
+
+        .mapclub-social span {
+            color: #666; /* Teks "Bergabung dengan kami:" kini abu-abu */
+            font-size: 11px; /* Ukuran font teks sosial */
+            font-weight: 700;
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .mapclub-social .mdi {
+            font-size: 18px; /* Ukuran ikon sosial media */
+            color: #c30000; /* Ikon sosial media kini merah */
+            margin-right: 10px;
+        }
+        
+        /* Footer bottom */
+        .footer-bottom {
+            background-color: #333; 
+            color: #999; 
+            font-size: 10px; /* Ukuran font copyright */
+            font-weight: 400;
+            padding: 10px 15px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        .footer-bottom a {
+            color: #999;
+            font-weight: 700;
+            font-size: 10px; /* Ukuran font link privacy/copyright */
+            text-decoration: none;
+            margin-left: 16px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .header-top { align-items: center; flex-direction: column; }
+            .logo-section { margin-right: 0; margin-bottom: 10px; }
+            .main-nav-wrapper { width: 100%; }
+            .top-info-bar { display: none; } 
+            .navbar-right-links { display: none; }
+            .navbar-custom .nav-link { border-right: none; border-bottom: 1px solid #d33a3a; padding-left: 20px; }
+            .navbar-custom .nav-link:first-child { border-left: none; }
+
+            .footer-col-group {
+                 flex-basis: 100%;
+            }
+            .footer-col {
+                flex-basis: calc(50% - 20px); 
+                min-width: auto;
+            }
+             .footer-links-layout {
+                 gap: 20px 20px;
+                 flex-direction: column;
+             }
+            .footer-logo {
+                flex-basis: 100%;
+                order: -1; 
+                padding-bottom: 20px;
+                text-align: center;
+            }
+            .footer-logo img { float: none; }
+            .investor-wrapper { flex-direction: column; gap: 10px; }
+            .mapclub-wrapper { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .mapclub-left { align-items: flex-start; }
+            .mapclub-social { justify-content: flex-start; }
+        }
+    </style>
+    <link href="https://cdn.materialdesignicons.com/6.5.95/css/materialdesignicons.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<div class="page-container">
+    <div class="header-top">
+        <div class="logo-section">
+            <img src="mitra-adiperkasa-logo-png_seeklogo-424568.png" alt="MAP Mitra Adiperkasa Logo" />
+        </div>
+        <div class="main-nav-wrapper">
+            <div class="top-info-bar">
+                <div class="stock-info">
+                    <span>Rp 1,160.00</span>
+                    <span class="mdi mdi-arrow-down"></span>
+                    <span>-2%</span>
+                </div>
+                <div class="lang-search">
+                    <span class="mdi mdi-earth" title="Ganti Bahasa"></span>
+                    <span>ID</span>
+                    <span class="mdi mdi-magnify" title="Cari"></span>
+                    <span class="mdi mdi-account-circle-outline" title="Akun"></span>
+                </div>
+            </div>
+            <nav class="navbar navbar-expand-lg navbar-custom p-0">
+                <div class="container p-0">
+                    <button class="navbar-toggler btn btn-light d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="mdi mdi-menu"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="#">Perusahaan</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Brand</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Investor</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="#">Tata Kelola</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Keberlanjutan</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Berita</a></li>
+                        </ul>
+                    </div>
+                    <div class="navbar-right-links d-none d-lg-flex">
+                        <a href="#">HUBUNGI KAMI</a>
+                        <a href="#">KARIR</a>
+                        <a href="#">GERAI</a>
+                        <a href="#">TAUTAN</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    
+    <main class="content-wrapper">
+        <div class="subtitle">TATA KELOLA PERUSAHAAN</div>
+        <h1>Kode Etik</h1>
+        <p>Menjunjung tinggi standar perilaku etis dan berbasis hukum sangatlah penting bagi kesuksesan MAP. Seluruh karyawan Perusahaan, termasuk Dewan Komisaris dan Direksi diharapkan untuk mematuhi peraturan-peraturan yang berlaku, serta peraturan internal yang dijabarkan dalam Kode Etik Perusahaan. Pertama kali diimplementasikan pada tahun 2001, Kode Etik Perusahaan menetapkan standar dan ketentuan yang harus dipenuhi oleh seluruh karyawan pada saat bekerja. Kode Etik Perusahaan juga berlaku sebagai panduan dalam menjalankan bisnis, serta sebagai pijakan untuk menetapkan keputusan yang diambil setiap harinya oleh Perusahaan.</p>
+        <h2>Budaya menghormati dan peluang kerja yang setara</h2>
+        <p>MAP memiliki komitmen untuk mempromosikan dan memelihara budaya saling menghormati serta memberikan peluang kerja yang sama. Perusahaan tidak melakukan diskriminasi berdasarkan gender, agama, ras, kebangsaan atau suku, latar belakang budaya, kelompok sosial, keterbatasan, status perkawinan, usia, ataupun opini politik. Keputusan terkait dengan perekrutan, promosi dan hal lainnya semata-mata berdasarkan kualifikasi dan kelayakan karyawan.</p>
+        <h2>Kerahasiaan Perusahaan</h2>
+        <p>Seluruh karyawan MAP diharapkan untuk melindungi informasi sensitif dengan menjaga kerahasiaan, agar dapat mencegah pengungkapan informasi yang tidak pada tempatnya.</p>
+        <h2>Keselamatan dan kesehatan lingkungan kerja</h2>
+        <p>Perusahaan melakukan upaya-upaya untuk memastikan lingkungan dan praktik kerja yang aman, sehat dan stabil. Seluruh karyawan MAP diharapkan untuk bertindak sesuai dengan peraturan keamanan, kesehatan dan lingkungan yang berlaku.</p>
+        <h2>Penggunaan aset Perusahaan</h2>
+        <p>MAP menyediakan sarana yang dibutuhkan untuk karyawan dalam melaksanakan pekerjaan. Sarana tersebut merupakan milik Perusahaan dan tidak boleh dipergunakan untuk kepentingan pribadi.</p>
+        <h2>Integritas</h2>
+        <p>Di Perusahaan, seluruh karyawan harus mengikuti peraturan dan praktik usaha yang wajar. Karyawan bertindak sesuai standar kewajaran dan mengacu pada standar tertinggi integritas dan transparansi. Perusahaan memiliki kebijakan anti korupsi yang secara terperinci diungkapkan di dalam Kode Etik Perusahaan. Karyawan diharapkan untuk menghindari konflik kepentingan, serta selalu mengutamakan kepentingan Perusahaan atas kepentingan pribadi dan bisnis lainnya.</p>
+        <h2>Komitmen tanggung jawab terhadap lingkungan</h2>
+        <p>Perusahan berkomitmen terhadap lingkungan dan mengambil langkah untuk memperkuat komitmen melalui praktik-praktik lingkungan yang bertanggung jawab.<br/><br/>Karyawan baru PT Mitra Adiperkasa Tbk akan mendapatkan program pengenalan Kode Etik Perusahaan, serta sosialisasi kebijakan secara berkesinambungan dan konsisten</p>
+    </main>
+
+    <div class="footer-divider"></div>
+
+    <footer class="footer-container" role="contentinfo">
+        
+        <div class="footer-links-layout">
+            <div class="footer-col-group">
+                
+                <div class="footer-col">
+                    <h3><span>Perusahaan.</span></h3>
+                    <ul>
+                        <li><a href="#">Ikhtisar Perusahaan</a></li>
+                        <li><a href="#">Pencapaian Penting</a></li>
+                        <li><a href="#">Struktur Organisasi</a></li>
+                        <li><a href="#">Karir</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3><span>Brand.</span></h3>
+                    <ul>
+                        <li><a href="#">Active</a></li>
+                        <li><a href="#">Kids</a></li>
+                        <li><a href="#">Fashion</a></li>
+                        <li><a href="#">Department Stores</a></li>
+                        <li><a href="#">F&B</a></li>
+                        <li><a href="#">Tech</a></li>
+                        <li><a href="#">Travel</a></li>
+                        <li><a href="#">Gift</a></li>
+                        <li><a href="#">Others</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3><span>Investor.</span></h3>
+                    <div class="investor-wrapper">
+                        <div>
+                            <ul>
+                                <li><a href="#">Laporan Keuangan</a></li>
+                                <li><a href="#">Laporan Tahunan & Keberlanjutan</a></li>
+                                <li><a href="#">Pengungkapan</a></li>
+                                <li><a href="#">Ikhtisar Keuangan</a></li>
+                                <li><a href="#">Saham</a></li>
+                                <li><a href="#">Kepemilikan Saham</a></li>
+                                <li><a href="#">Prospektus Pencatatan Perdana Saham</a></li>
+                                <li><a href="#">Anggaran Dasar</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul>
+                                <li><a href="#">Komite Audit</a></li>
+                                <li><a href="#">Risiko & Penanganannya</a></li>
+                                <li><a class="active" href="#">Kode Etik</a></li>
+                                
+                                <li><a href="#">Whistleblowing System</a></li>
+                                <li><a href="#">Komite Nominasi dan Remunerasi</a></li>
+                                <li><a href="#">Pedoman dan Aturan Kerja Dewan Komisaris & Direksi</a></li>
+                                <li><a href="#">Unit Audit Internal</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3><span>Tautan.</span></h3>
+                    <ul>
+                        <li><a href="#">MAP Club</a></li>
+                        <li><a href="#">MAP Gift Voucher</a></li>
+                        <li><a href="#">MAP Corporate Gift</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3><span>Berita.</span></h3>
+                    <ul>
+                        <li><a href="#">Corporate</a></li>
+                        <li><a href="#">Siaran Pers</a></li>
+                        <li><a href="#">Highlight</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3><span>Kontak.</span></h3>
+                    <ul>
+                        <li><a href="#">Hubungi Kami</a></li>
+                        <li><a href="#">Lokasi Kantor</a></li>
+                        <li><a href="#">Lokasi Gerai</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <div class="footer-logo">
+                <img src="mitra-adiperkasa-logo-png_seeklogo-424568.png" alt="MAP Mitra Adiperkasa Logo" />
+            </div>
+        </div>
+
+        <div class="mapclub-wrapper">
+            <div class="mapclub-left">
+                <h4>Lihat Berita Terbaru tentang MAPCLUB</h4>
+                <button type="button" aria-label="Masuk ke MAPCLUB">MASUK KE MAPCLUB</button>
+            </div>
+            <div class="mapclub-social" aria-label="Terhubung dengan kami di sosial media">
+                <span>Bergabung dengan kami:</span>
+                <span class="mdi mdi-google" title="Google" aria-hidden="true"></span>
+                <span class="mdi mdi-youtube" title="YouTube" aria-hidden="true"></span>
+                <span class="mdi mdi-facebook" title="Facebook" aria-hidden="true"></span>
+                <span class="mdi mdi-twitter" title="Twitter" aria-hidden="true"></span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="footer-bottom">
+        <div>© 2023, PT Mitra Adiperkasa Tbk. All rights reserved.</div>
+        <div>
+            <a href="#">KEBIJAKAN PRIVASI</a>
+            <a href="#">KETENTUAN HAK CIPTA</a>
+        </div>
+    </div>
+ </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
